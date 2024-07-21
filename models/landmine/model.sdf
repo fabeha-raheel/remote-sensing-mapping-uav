@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="landmine">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <!-- <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder> -->
+          <mesh>
+            <uri>model://landmine/meshes/landmine.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <!-- <cylinder>
+            <radius>0.5</radius>
+            <length>1</length>
+          </cylinder> -->
+          <mesh>
+            <uri>model://landmine/meshes/landmine.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
