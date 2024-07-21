@@ -126,10 +126,6 @@
     </model>
     
     <!-- Drone model -->
-    <!-- <include>
-      <uri>model://typhoon_h480_ardupilot</uri>
-      <pose>0 0 0 0 0 0</pose>
-    </include> -->
     <model name="iris">
       <include>
         <uri>model://drone_with_camera</uri>
