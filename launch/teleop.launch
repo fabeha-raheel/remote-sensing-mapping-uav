@@ -1,6 +1,7 @@
 <launch>
-    <arg name="teleop_args" default="-rc" />
-	
+	<arg name="teleop_args" default="-rc" />
+
 	<node pkg="remote-sensing-mapping-uav" type="teleop.py" name="teleop" args="$(arg teleop_args)" required="True" output="screen">
 	</node>
+	
 </launch>
