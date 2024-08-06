@@ -3,12 +3,12 @@ thres = 0.4 # Threshold to detect object
 nms_thres = 0.4
 
 classNames= []
-classFile = '/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/scripts/coco.names'
+classFile = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/coco.names'
 with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 # print(len(classNames))
-configPath = '/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/scripts/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
-weightsPath = '/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/scripts/frozen_inference_graph.pb'
+configPath = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+weightsPath = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/frozen_inference_graph.pb'
 
 net = cv2.dnn_DetectionModel(weightsPath,configPath)
 net.setInputSize(320,320)
@@ -36,7 +36,7 @@ def getobjects(img, draw=True, objects = []):
     return img, objectInfo
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture('/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/output_video.avi')
+    cap = cv2.VideoCapture('/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.avi')
     cap.set(3,640)
     cap.set(4,480)
     # cap.set

@@ -2,14 +2,14 @@
 <launch>
 
         <!-- Add Gazebo Model Path -->
-        <env name="GAZEBO_MODEL_PATH" value="$(find remote-sensing-mapping-uav)/models" />
+        <env name="GAZEBO_MODEL_PATH" value="$(find remote_sensing_mapping_uav)/models" />
 
         <!-- overwriting these args -->
         <arg name="debug" default="false" />
         <arg name="gui" default="true" />
         <arg name="pause" default="false" />
         <arg name="headless" default="false" />
-        <arg name="world" default="$(find remote-sensing-mapping-uav)/worlds/outdoor_person.world" />
+        <arg name="world" default="$(find remote_sensing_mapping_uav)/worlds/baylands_with_iris.world" />
         <arg name="extra_gazebo_args" default="--verbose" />
 
         <!-- include gazebo_ros launcher -->
@@ -23,8 +23,14 @@
                 <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)" />
         </include>
 
+         <!-- MAVROS Node -->
+        <include file="$(find remote_sensing_mapping_uav)/launch/apm.launch" >
+                <!-- url for sitl -->
+                <arg name="fcu_url" value="udp://127.0.0.1:14551@14555" />  
+        </include>
+
         <!-- ArduCopter Node -->
-        <node name="ArduCopter" pkg="remote-sensing-mapping-uav" type="startsitl.sh" launch-prefix="gnome-terminal --tab --" />
+        <node name="ArduCopter" pkg="remote_sensing_mapping_uav" type="startsitl.sh" launch-prefix="gnome-terminal --tab --" />
 </launch>
 
 

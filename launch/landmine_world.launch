@@ -2,14 +2,14 @@
 <launch>
 
         <!-- Add Gazebo Model Path -->
-        <env name="GAZEBO_MODEL_PATH" value="$(find remote-sensing-mapping-uav)/models" />
+        <env name="GAZEBO_MODEL_PATH" value="$(find remote_sensing_mapping_uav)/models" />
 
         <!-- overwriting these args -->
         <arg name="debug" default="false" />
         <arg name="gui" default="true" />
         <arg name="pause" default="false" />
         <arg name="headless" default="false" />
-        <arg name="world" default="$(find remote-sensing-mapping-uav)/worlds/red_landmine.world" />
+        <arg name="world" default="$(find remote_sensing_mapping_uav)/worlds/red_landmine.world" />
         <arg name="extra_gazebo_args" default="--verbose" />
 
         <!-- include gazebo_ros launcher -->

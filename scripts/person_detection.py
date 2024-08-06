@@ -85,8 +85,8 @@ def process_video(video_path, output_path):
     cv2.destroyAllWindows()
 
 # Specify paths to input video and output video
-input_video_path = '/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/output_video.avi'
-output_video_path = '/home/aeel/catkin_ws/src/remote-sensing-mapping-uav/output_video.mp4'
+input_video_path = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.avi'
+output_video_path = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.mp4'
 
 # Process the input video and save the output with detections
 process_video(input_video_path, output_video_path)
