@@ -6,6 +6,7 @@ import numpy as np
 import math
 import rospy
 
+from std_msgs.msg import Float64
 from sensor_msgs.msg import NavSatFix, Image
 from nav_msgs.msg import Odometry
 from remote_sensing_mapping_uav.msg import Target
@@ -26,8 +27,8 @@ except:
     print("Unable to locate package path. Try sourcing your ROS workspace.")
     sys.exit()
 
-thres = 0.3 # Threshold to detect object
-nms_thres = 0.3
+thres = 0.4 # Threshold to detect object
+nms_thres = 0.4
 
 classNames= []
 classFile = pkg_path + '/include/coco.names'
@@ -53,6 +54,9 @@ def GPS_Subscriber_callback(mssg):
 def Local_Position_Subscriber_callback(mssg):
     drone_data.altitude = mssg.pose.pose.position.z
 
+def HDG_subscriber_callback(mssg):
+    drone_data.heading = mssg.data
+
 def roscamera_callback(mssg):
     try:
         drone_data.roscamera_cvImage = bridge.imgmsg_to_cv2(mssg, "bgr8")
@@ -66,12 +70,11 @@ def target_detection(frame, frame_center, publisher):
         return frame
 
     classIds, confs, bbox = net.detect(frame,confThreshold=thres,nmsThreshold = nms_thres)
-    print(classIds)
     
     result = frame.copy()
 
     if len(classIds) != 0:
-        location = (drone_data.latitude, drone_data.longitude, drone_data.altitude)
+        location = (drone_data.latitude, drone_data.longitude, drone_data.altitude, drone_data.heading)
         largest_target_area = 0
         targetInfo = None
 
@@ -93,15 +96,16 @@ def target_detection(frame, frame_center, publisher):
             x,y,w,h = targetInfo[0][0], targetInfo[0][1], targetInfo[0][2], targetInfo[0][3]
             cx, cy = int(x + (w//2)), int(y + (h//2))
             target_msg = Target()
-            target_msg.x_corner = x
-            target_msg.y_corner = y
-            target_msg.width = w
-            target_msg.height = h
+            target_msg.x_center = int(cx)
+            target_msg.y_center = int(cy)
+            target_msg.width = int(w)
+            target_msg.height = int(h)
             target_msg.class_name = targetInfo[1]
-            target_msg.confidence = targetInfo[2]
+            target_msg.confidence = round(targetInfo[2], 2)
             target_msg.latitude = targetInfo[3][0]
             target_msg.longitude = targetInfo[3][1]
-            target_msg.altitude = targetInfo[3][2]
+            target_msg.altitude = round(targetInfo[3][2], 2)
+            target_msg.heading = round(targetInfo[3][3], 2)
             target_msg.distance_from_image_center = int(math.sqrt((frame_center[1]-cx)**2 + (frame_center[0]-cy)**2))
 
             publisher.publish(target_msg)
@@ -127,6 +131,7 @@ if __name__ == "__main__":
 
     GPS_Subscriber=rospy.Subscriber('/mavros/global_position/global',NavSatFix, GPS_Subscriber_callback)
     Local_Position_Subscriber = rospy.Subscriber('/mavros/global_position/local',Odometry, Local_Position_Subscriber_callback)
+    Compass_Hdg_Subscriber = rospy.Subscriber('/mavros/global_position/compass_hdg',Float64, HDG_subscriber_callback)
     # roscamera=rospy.Subscriber("/webcam/image_raw", Image, roscamera_callback)
 
     Target_Publisher = rospy.Publisher('target_detection/target', Target, queue_size=10)
@@ -151,7 +156,7 @@ if __name__ == "__main__":
     height = 500
     dim = (width, height)
 
-    while True:
+    while not rospy.is_shutdown():
 
         success,img = cap.read()
         

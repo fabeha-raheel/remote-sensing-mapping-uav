@@ -3,6 +3,7 @@
 latitude = None
 longitude = None
 altitude = None
+heading = None
 targets = []
 
 roscamera_cvImage = None
