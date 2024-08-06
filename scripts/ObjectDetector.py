@@ -1,14 +1,18 @@
 import cv2
+import rospkg
+
+pkg_path = rospkg.RosPack().get_path('remote_sensing_mapping_uav')
+
 thres = 0.4 # Threshold to detect object
 nms_thres = 0.4
 
 classNames= []
-classFile = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/coco.names'
+classFile = pkg_path + '/include/coco.names'
 with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 # print(len(classNames))
-configPath = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
-weightsPath = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/include/frozen_inference_graph.pb'
+configPath = pkg_path + '/include/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+weightsPath = pkg_path + '/include/frozen_inference_graph.pb'
 
 net = cv2.dnn_DetectionModel(weightsPath,configPath)
 net.setInputSize(320,320)
@@ -36,7 +40,7 @@ def getobjects(img, draw=True, objects = []):
     return img, objectInfo
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture('/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.avi')
+    cap = cv2.VideoCapture(pkg_path + '/output_video.avi')
     cap.set(3,640)
     cap.set(4,480)
     # cap.set

@@ -2,7 +2,7 @@
 <package format="2">
   <name>remote_sensing_mapping_uav</name>
   <version>0.0.0</version>
-  <description>Land Mine Detection Drone Simulation</description>
+  <description>Target Detection and Mapping Drone Simulation</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

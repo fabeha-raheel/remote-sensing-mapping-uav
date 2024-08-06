@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 import tensorflow as tf
+import rospkg
+
+pkg_path = rospkg.RosPack().get_path('remote_sensing_mapping_uav')
 
 # Load the pre-trained MobileNet SSD model
 model = tf.saved_model.load('ssd_mobilenet_v2_coco')
@@ -85,8 +88,8 @@ def process_video(video_path, output_path):
     cv2.destroyAllWindows()
 
 # Specify paths to input video and output video
-input_video_path = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.avi'
-output_video_path = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/output_video.mp4'
+input_video_path = pkg_path + '/output_video.avi'
+output_video_path = pkg_path + '/output_video.mp4'
 
 # Process the input video and save the output with detections
 process_video(input_video_path, output_video_path)
