@@ -19,7 +19,7 @@ import sys
 
 import drone_data
 
-TARGETS_LIST = ['person', 'car', 'bus', 'truck']
+TARGETS_LIST = ['person', 'car', 'bus', 'truck', 'mouse', 'cellphone']
 
 try:
     pkg_path = rospkg.RosPack().get_path('remote_sensing_mapping_uav')
