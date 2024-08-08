@@ -19,10 +19,10 @@ class MappingApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.title('Landmine Mapping GUI')
+        self.title('SAR Target Mapping GUI')
         self.geometry('500x500')
 
-        self.locations = drone_data.landmines
+        self.locations = drone_data.targets
         self.inital_zoom = 20
         self.initial_position = (37.413534, -121.996561)
         self.markers = []
@@ -54,7 +54,7 @@ class MappingApp(tk.Tk):
             for location in self.locations:
                 index = self.locations.index(location)
                 text = "Target " + str(index + 1) + ": " + location[2]
-                self.markers.append(self.map_widget.set_marker(location[1][0], location[1][1], text=text))
+                self.markers.append(self.map_widget.set_marker(location[1][0], location[1][1], text=text, text_color="white"))
         elif len(self.markers) < len(self.locations):
             for i in range(len(self.locations)):
 
@@ -63,7 +63,7 @@ class MappingApp(tk.Tk):
                 else:
                     index = i
                     text = "Target " + str(index + 1) + ": " + location[2]
-                    self.markers.append(self.map_widget.set_marker(self.locations[i][1][0], self.locations[i][1][1], text=text))
+                    self.markers.append(self.map_widget.set_marker(self.locations[i][1][0], self.locations[i][1][1], text=text, text_color="white"))
         else:
             for location in self.locations:
                 index = self.locations.index(location)
