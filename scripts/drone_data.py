@@ -3,7 +3,8 @@
 latitude = None
 longitude = None
 altitude = None
-landmines = []
+heading = None
+targets = []
 
 roscamera_cvImage = None
 FRAME_WIDTH = None

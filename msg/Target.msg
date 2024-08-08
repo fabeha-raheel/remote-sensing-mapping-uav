@@ -1,7 +1,12 @@
 Header header
-float32 x_center
-float32 y_center
-float32 width
-float32 height
+int32 x_center
+int32 y_center
+int32 width
+int32 height
 float32 confidence
-float32 class_name
+string class_name
+int32 distance_from_image_center
+float32 altitude
+float64 latitude
+float64 longitude
+float64 heading

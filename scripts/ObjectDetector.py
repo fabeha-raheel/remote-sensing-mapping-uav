@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import cv2
 import rospkg
 
@@ -11,6 +13,7 @@ classFile = pkg_path + '/include/coco.names'
 with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 # print(len(classNames))
+print(classNames)
 configPath = pkg_path + '/include/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 weightsPath = pkg_path + '/include/frozen_inference_graph.pb'
 
