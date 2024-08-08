@@ -27,8 +27,8 @@ except:
     print("Unable to locate package path. Try sourcing your ROS workspace.")
     sys.exit()
 
-thres = 0.4 # Threshold to detect object
-nms_thres = 0.4
+thres = 0.6 # Threshold to detect object
+nms_thres = 0.6
 
 classNames= []
 classFile = pkg_path + '/include/coco.names'
@@ -132,22 +132,24 @@ if __name__ == "__main__":
     GPS_Subscriber=rospy.Subscriber('/mavros/global_position/global',NavSatFix, GPS_Subscriber_callback)
     Local_Position_Subscriber = rospy.Subscriber('/mavros/global_position/local',Odometry, Local_Position_Subscriber_callback)
     Compass_Hdg_Subscriber = rospy.Subscriber('/mavros/global_position/compass_hdg',Float64, HDG_subscriber_callback)
-    # roscamera=rospy.Subscriber("/webcam/image_raw", Image, roscamera_callback)
+    roscamera=rospy.Subscriber("/webcam/image_raw", Image, roscamera_callback)
 
     Target_Publisher = rospy.Publisher('target_detection/target', Target, queue_size=10)
 
-    cap = cv2.VideoCapture(pkg_path + '/output_video.avi')
-    cap.set(3,640)
-    cap.set(4,480)
+    # cap = cv2.VideoCapture(pkg_path + '/output_video.avi')
+    # cap.set(3,640)
+    # cap.set(4,480)
 
-    success,img = cap.read()
-    drone_data.roscamera_cvImage = img
+    # success,img = cap.read()
+    # drone_data.roscamera_cvImage = img
     
     while drone_data.roscamera_cvImage is None:
         # wait
         pass
 
     FRAME_WIDTH, FRAME_HEIGHT, _ = drone_data.roscamera_cvImage.shape
+    print(FRAME_WIDTH)
+    print(FRAME_HEIGHT)
     frame_center = (int(FRAME_WIDTH/2) , int(FRAME_HEIGHT/2))
     print("Stored frame data....")
 
@@ -156,14 +158,16 @@ if __name__ == "__main__":
     height = 500
     dim = (width, height)
 
+    success = True
+
     while not rospy.is_shutdown():
 
-        success,img = cap.read()
+        # success,img = cap.read()
         
         if success:
             # Target Detection Codeblock
-            # detection = target_detection(drone_data.roscamera_cvImage, frame_center)
-            detection = target_detection(img, frame_center, Target_Publisher)
+            detection = target_detection(drone_data.roscamera_cvImage, frame_center, Target_Publisher)
+            # detection = target_detection(img, frame_center, Target_Publisher)
 
             # Display the resulting frame
             # resized = cv2.resize(detection, dim, interpolation = cv2.INTER_AREA)

@@ -19,9 +19,12 @@ LOG_FILEPATH = pkg_path + r'/logs/data.pickle'
 TARGETS = []
 
 camera_hfov = 60
-camera_w = 640
-camera_h = 480
+camera_w = 480
+camera_h = 640
 camera_vfov = round(camera_hfov * (camera_w/camera_h), 2)
+
+camera_center_x = int(camera_w/2)
+camera_center_y = int(camera_h/2)
 
 gw = (2*math.tan(math.radians(camera_hfov/2))) / camera_w
 gh = (2*math.tan(math.radians(camera_vfov/2))) / camera_h
@@ -48,8 +51,8 @@ def localization_callback(mssg):
 
     cx, cy, w, h = mssg.x_center, mssg.y_center, mssg.width, mssg.height
     psi = math.radians(mssg.heading)
-    dx = camera_w - cx
-    dy = camera_h - cy
+    dx = camera_center_x - cx
+    dy = camera_center_y - cy
 
     P_c_x = GSD_x*dx
     P_c_y = GSD_y*dy
@@ -58,7 +61,7 @@ def localization_callback(mssg):
     P_E = math.sin(psi)*P_c_x + math.cos(psi)*P_c_y
 
     delta_lat = P_N / R
-    delta_long = P_E / (math.cos(math.radians(mssg.latitude)))
+    delta_long = P_E / (R*(math.cos(math.radians(mssg.latitude))))
 
     target_lat = mssg.latitude + delta_lat
     target_long = mssg.longitude + delta_long
@@ -74,7 +77,8 @@ def localization_callback(mssg):
         gps_distance = get_distance_metres(location, target[1])
         print(gps_distance)
         
-        if gps_distance < 2:
+        if int(gps_distance) < 5:
+            # print("GPS distance less than 5 ", gps_distance)
             target_present = True
 
             if target_dist < target[0]:
