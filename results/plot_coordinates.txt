@@ -1,11 +1,4 @@
-Website: https://mobisoftinfotech.com/tools/plot-multiple-points-on-map/
-
-Template:
-19.0760,72.8777,#00FF00,marker,"Mumbai"
-18.5204,73.8567,red,square,"Pune"
-40.7128,-74.0060,#333,circle,"New York"
--33.9249,18.4241,red,square,"Cape Town"
--22.9068,-43.1729,blue,marker,"Rio de Janeiro"
+Website: https://maps.co/gis/
 
 Actual Coordinates
 
