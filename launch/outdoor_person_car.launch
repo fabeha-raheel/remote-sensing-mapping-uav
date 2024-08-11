@@ -9,8 +9,7 @@
         <arg name="gui" default="true" />
         <arg name="pause" default="false" />
         <arg name="headless" default="false" />
-        <!-- <arg name="world" default="$(find remote_sensing_mapping_uav)/worlds/outdoor_person_car.world" /> -->
-        <arg name="world" default="$(find remote_sensing_mapping_uav)/worlds/baylands_with_vehicles.world" />
+        <arg name="world" default="$(find remote_sensing_mapping_uav)/worlds/outdoor_person_SUV.world" />
         <arg name="extra_gazebo_args" default="--verbose" />
 
         <!-- include gazebo_ros launcher -->
