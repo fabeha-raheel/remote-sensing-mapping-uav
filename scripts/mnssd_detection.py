@@ -85,6 +85,10 @@ def target_detection(frame, frame_center, publisher):
             if className in TARGETS_LIST:
                 # save the target with largest area in the frame
                 area = box[2]*box[3]
+
+                # if area is greater than nearly 80% the size of the frame then, it is likely a false positive
+                if area > (0.8 * FRAME_WIDTH * FRAME_HEIGHT):
+                    continue
                 if area > largest_target_area:
                     targetInfo = [box, className, confidence, location] 
                     largest_target_area = area
@@ -100,7 +104,10 @@ def target_detection(frame, frame_center, publisher):
             target_msg.y_center = int(cy)
             target_msg.width = int(w)
             target_msg.height = int(h)
-            target_msg.class_name = targetInfo[1]
+            if targetInfo[1] == 'mouse' or targetInfo[1] == 'cellphone':
+                target_msg.class_name = 'vehicle'
+            else:
+                target_msg.class_name = targetInfo[1]
             target_msg.confidence = round(targetInfo[2], 2)
             target_msg.latitude = targetInfo[3][0]
             target_msg.longitude = targetInfo[3][1]

@@ -45,7 +45,7 @@ def getobjects(img, draw=True, objects = []):
 if __name__ == "__main__":
 
 
-    img = cv2.imread('/home/fabeha/Pictures/3.png')
+    img = cv2.imread('/home/fabeha/Pictures/1.png')
     # cap = cv2.VideoCapture(pkg_path + '/output_video.avi')
     # cap.set(3,640)
     # cap.set(4,480)
