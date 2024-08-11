@@ -25,3 +25,4 @@ simulation was conducted over ROS network
 mission wp file was wp3.waypoints
 world: outdoor_person_SUV.world
 actual target coordinates are available in gps.txt
+Avg_accuracy =  2.62978601406296
