@@ -40,4 +40,33 @@ simulation was conducted over ROS network
 mission wp file was wp5_baylands.waypoints
 world: outdoor_person_SUV.world
 actual target coordinates are available in gps_new.txt
-Avg_accuracy =  2.62978601406296
+Avg_accuracy = 8.354790844672626 m
+
+
+Experiment4:
+Targets:
+[(212, (37.413676689373474, -121.99647061259972), 'person'), (209, (37.41362093779271, -121.99674564945715), 'person'), (139, (37.4134155777631, -121.99638845341578), 'person'), (318, (37.41333209135805, -121.99674024716238), 'person'), (58, (37.413334745753424, -121.99695889678125), 'vehicle'), (241, (37.41336760786671, -121.99698083326444), 'vehicle'), (169, (37.413287430238896, -121.99695034979851), 'vehicle'), (228, (37.41334008993654, -121.99706553910417), 'vehicle')]
+
+hres = 0.6 # Threshold to detect object
+nms_thres = 0.6
+drone flight at 5m altitude and 5m/s speed.
+simulation was conducted over ROS network
+
+mission wp file was wp6_baylands.waypoints
+world: outdoor_person_SUV.world
+actual target coordinates are available in gps_new.txt
+Avg_accuracy = 1.8866565377624707
+
+Experiment5:
+Targets:
+[(72, (37.41367550285474, -121.99646905372035), 'person'), (197, (37.41364610918951, -121.99642665218192), 'person'), (10, (37.41355187742603, -121.99627992229362), 'person'), (40, (37.41348870384002, -121.99628154415358), 'person'), (62, (37.41368707414824, -121.99666251344262), 'person'), (152, (37.413625531033944, -121.99673834689855), 'person'), (178, (37.413609678857355, -121.99668693836534), 'person'), (56, (37.413424525037165, -121.99638174918158), 'person'), (73, (37.41354619165582, -121.99659049150041), 'person'), (130, (37.41342889760671, -121.99641371129572), 'person'), (79, (37.4133399359941, -121.9967321489684), 'person'), (108, (37.41332983195918, -121.99669352012315), 'person'), (68, (37.413115693728614, -121.99655658191054), 'vehicle'), (22, (37.413317326591816, -121.99694942196997), 'vehicle'), (154, (37.41333438982595, -121.99699916778413), 'vehicle'), (130, (37.41311477936239, -121.99651517150882), 'vehicle'), (220, (37.41327706983022, -121.99697115036577), 'vehicle')]
+
+hres = 0.6 # Threshold to detect object
+nms_thres = 0.6
+drone flight at 10m altitude and 5m/s speed.
+simulation was conducted over ROS network
+
+mission wp file was wp7_baylands.waypoints
+world: outdoor_person_SUV.world
+actual target coordinates are available in gps_new.txt
+Avg_accuracy = 3.3459385169066924
