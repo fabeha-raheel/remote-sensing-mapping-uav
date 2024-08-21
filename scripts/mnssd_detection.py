@@ -19,7 +19,7 @@ import sys
 
 import drone_data
 
-TARGETS_LIST = ['person', 'car', 'bus', 'truck', 'mouse', 'cellphone']
+TARGETS_LIST = ['person', 'car', 'bus', 'truck', 'mouse', 'cell phone']
 
 try:
     pkg_path = rospkg.RosPack().get_path('remote_sensing_mapping_uav')
@@ -104,7 +104,7 @@ def target_detection(frame, frame_center, publisher):
             target_msg.y_center = int(cy)
             target_msg.width = int(w)
             target_msg.height = int(h)
-            if targetInfo[1] == 'mouse' or targetInfo[1] == 'cellphone':
+            if targetInfo[1] == 'mouse' or targetInfo[1] == 'cell phone':
                 target_msg.class_name = 'vehicle'
             else:
                 target_msg.class_name = targetInfo[1]
@@ -114,7 +114,7 @@ def target_detection(frame, frame_center, publisher):
             target_msg.altitude = round(targetInfo[3][2], 2)
             target_msg.heading = round(targetInfo[3][3], 2)
             target_msg.distance_from_image_center = int(math.sqrt((frame_center[1]-cx)**2 + (frame_center[0]-cy)**2))
-
+            
             publisher.publish(target_msg)
 
             # Draw and output frame

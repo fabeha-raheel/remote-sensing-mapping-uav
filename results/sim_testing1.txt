@@ -26,3 +26,18 @@ mission wp file was wp3.waypoints
 world: outdoor_person_SUV.world
 actual target coordinates are available in gps.txt
 Avg_accuracy =  2.62978601406296
+
+
+Experiment3:
+Targets detected and mapped:
+[(93, (37.413168768080745, -121.99650916397394), 'vehicle'), (103, (37.413423675656105, -121.99638515813147), 'person'), (165, (37.41343164454639, -121.99637979352752), 'person'), (108, (37.41312952302149, -121.99656437315228), 'vehicle'), (318, (37.413121231957696, -121.99646684150157), 'person'), (42, (37.41366511628288, -121.9964665499746), 'person'), (190, (37.41331542011661, -121.99674295850426), 'person'), (186, (37.41336091254744, -121.99668624911237), 'person'), (109, (37.413699280077445, -121.99644338275576), 'person'), (152, (37.413638960958586, -121.99651130795829), 'person'), (53, (37.41331445105463, -121.996952890868), 'vehicle'), (79, (37.413356137791574, -121.99692287688259), 'vehicle'), (68, (37.41360672131246, -121.9967646011445), 'person'), (280, (37.41358985229841, -121.99669980199401), 'person'), (138, (37.41335698539195, -121.99697084405723), 'vehicle'), (245, (37.41333693944794, -121.99701406824101), 'vehicle')]
+
+hres = 0.6 # Threshold to detect object
+nms_thres = 0.6
+drone flight at 10m altitude and 5m/s speed.
+simulation was conducted over ROS network
+
+mission wp file was wp5_baylands.waypoints
+world: outdoor_person_SUV.world
+actual target coordinates are available in gps_new.txt
+Avg_accuracy =  2.62978601406296
