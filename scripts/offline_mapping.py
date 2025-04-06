@@ -6,7 +6,7 @@ import pickle
 
 import drone_data
 
-MAPPING_LOG = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/logs/data.pickle'
+MAPPING_LOG = '/home/ugv/rtab_ws/src/remote-sensing-mapping-uav/logs/test_data.pickle'
 
 class MappingApp(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -15,9 +15,9 @@ class MappingApp(tk.Tk):
         self.title('Landmine Mapping GUI')
         self.geometry('500x500')
 
-        self.locations = drone_data.landmines
+        self.locations = []
         self.inital_zoom = 20
-        self.initial_position = (-35.3632621, 149.1652374)
+        self.initial_position = (24.146700, 47.270541)
         self.markers = []
 
         self.labelFrame = tk.LabelFrame(self)
