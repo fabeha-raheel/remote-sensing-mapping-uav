@@ -13,6 +13,8 @@ This work has been developed as part of a **funded research project** under the 
 The proposed system architecture is divided into four key modules — each handling a distinct aspect of the autonomous mission:  
 **(1) Mission Planning**, **(2) Target Detection**, **(3) Target Geolocation Estimation**, and **(4) Target Mapping**.
 
+![ROS-based Software Architecture](images/rqt_graph2.jpeg)
+
 ### ✈️ Mission Planning and Autonomous Execution
 
 The **mission planning module** enables the UAV to perform fully autonomous flight operations over predefined GPS waypoints.  
@@ -23,6 +25,8 @@ Using **ArduPilot SITL** integrated with **MAVROS**, the UAV performs:
 
 Flight paths can be created using standard GCS tools such as **Mission Planner** or **QGroundControl**, and are uploaded to the UAV before the mission.  
 During flight, the UAV continuously publishes telemetry, camera data, and GPS readings through ROS topics for further processing.
+
+<img src="images/grid_search_mp2.png" width="600">
 
 ### 🧠 Target Detection and Identification Algorithm
 
@@ -51,6 +55,8 @@ The algorithm also:
 
 This results in an **average localization accuracy of 2.63 m in simulation** and **3.35 m during field testing**.
 
+<img src="images/camera_fov.png" width="600">
+
 ### 🗺️ Target Mapping
 
 The **mapping module** provides both **real-time** and **offline** visualization of detected targets using the **TkinterMapView** library.  
@@ -58,6 +64,8 @@ The **mapping module** provides both **real-time** and **offline** visualization
 - If real-time connectivity with the UAV is unavailable, the system can generate **offline maps** using saved log files.  
 
 This feature enables rescue teams to analyze search areas efficiently, make quick decisions, and replay missions for data validation.
+
+<img src="images/target_mapping.png" height="300"> <img src="images/targets_satellite.png" height="300">
 
 ---
 
@@ -153,6 +161,8 @@ cd scripts/
 roslaunch fabeha-raheel-remote-sensing-mapping-uav baylands.launch
 ```
 
+<img src="images/simulation_world_cropped.png" width="600">
+
 #### 3. Run target detection and localization:
 
 ```bash
@@ -168,6 +178,9 @@ rosrun fabeha-raheel-remote-sensing-mapping-uav tk_mapping_node.py
 ---
 
 ## 🧩 Hardware Platform
+
+<img src="images/hexa_drone_restored.png" width="550">
+
 
 | Component | Specification |
 |------------|----------------|
@@ -186,10 +199,10 @@ rosrun fabeha-raheel-remote-sensing-mapping-uav tk_mapping_node.py
 
 | Metric | Simulation | Real-world Test |
 |---------|-------------|----------------|
-| **Detection Accuracy** | ~70.2 % | – |
+| **Detection Accuracy** | ~70.2 % | ~81.0 % |
 | **Localization Accuracy** | 2.63 m | 3.35 m |
 | **Processing Time per Frame** | 406 ms | 406 ms |
-| **Inference Speed** | ~30 FPS on Jetson Nano | – |
+| **Inference Speed** | - | ~30 FPS on Jetson Nano |
 
 The system successfully detected and localized all test targets (humans and vehicles) and mapped their coordinates accurately, demonstrating strong potential for **time-critical SAR operations**.
 
@@ -203,9 +216,18 @@ The system successfully detected and localized all test targets (humans and vehi
 
 If you use this work in your research, please cite:
 
-> H. Mehmood, F. Raheel, M. B. Kadri, and U. S. Khan,  
-> _“Autonomous Detection and Geolocalization of Targets using UAVs for Search and Rescue (SAR) Operations,”_  
-> National University of Sciences & Technology (NUST), 2024.
+> Mehmood, H., Raheel, F., Kadri, M. B., & Khan, U. S. (2024, December). Autonomous Detection and Geolocalization of Targets Using Unmanned Aerial Vehicles for Search and Rescue (SAR) Operations. In 2024 International Conference on Robotics and Automation in Industry (ICRAI) (pp. 1-6). IEEE.
+
+```
+@inproceedings{mehmood2024autonomous,
+  title={Autonomous Detection and Geolocalization of Targets Using Unmanned Aerial Vehicles for Search and Rescue (SAR) Operations},
+  author={Mehmood, Hassan and Raheel, Fabeha and Kadri, Muhammad Bilal and Khan, Umar Shahbaz},
+  booktitle={2024 International Conference on Robotics and Automation in Industry (ICRAI)},
+  pages={1--6},
+  year={2024},
+  organization={IEEE}
+}
+```
 
 ---
 
